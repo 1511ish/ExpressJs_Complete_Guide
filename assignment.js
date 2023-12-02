@@ -42,24 +42,83 @@
 
 // ----------3rd Assignment------------
 
-const express = require('express');
-const bodyParser = require('body-parser');
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const path = require('path');
+
+// const app = express();
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+// const contactRoutes = require('./routes/contact');
+// const { Http2ServerRequest } = require('http2');
+
+// app.use('/', bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use(adminRoutes);
+// app.use(shopRoutes);
+// app.use(contactRoutes);
+
+// app.use((req, res, next) => {
+//    // res.status(404).send('<h1>Page not found</h1>');
+//    res.sendFile(path.join(__dirname, 'views', '404.html'));
+// })
+
+// app.listen(4000);
+
+
+
+
+
+
+// const path = require('path');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const errorController = require('./controllers/error');
+
+// const app = express();
+
+// app.set('view engine', 'ejs');
+// app.set('views', 'views');
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+
+// app.use(errorController.get404);
+
+// app.listen(3000);
+
+
+
+
 const path = require('path');
 
+const express = require('express');
+const bodyParser = require('body-parser');
+const errorController = require('./controllers/error');
+
 const app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-app.use('/', bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname,'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(adminRoutes);
+app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
-app.use((req, res, next) => {
-   // res.status(404).send('<h1>Page not found</h1>');
-   res.sendFile(path.join(__dirname,'views','404.html'));
-})
+app.use(errorController.get404);
 
-app.listen(4000);
+app.listen(3000);

@@ -1,13 +1,37 @@
+// const express = require('express');
+// const path = require('path');
+// const rootDir = require('../util/path');
+
+// const router = express.Router();
+
+// router.use('/add-product', (req, res, next) => {
+//     // res.sendFile(path.join(__dirname,'../','views','add-product.html'));
+//     //                     OR
+//     // res.sendFile(path.join(__dirname,'..','views','add-product.html'));
+//     //                     OR
+//     res.sendFile(path.join(rootDir,'views','add-product.html'));
+// })
+// router.post('/product', (req, res, next) => {
+//     console.log(req.body);
+//     res.redirect('/');
+// })
+
+// module.exports = router;
+
+
+
+
+const path = require('path');
+
 const express = require('express');
 
-const router = express.Router();
+const productsController = require('../controllers/products');
+const router = require('./shop');
 
-router.use('/add-product', (req, res, next) => {
-    res.send("<form action='/product' method='POST'><input type='text' name='title'><input type='text' name='title'><button type='submit'>click</button></form>");
-})
-router.post('/product', (req, res, next) => {
-    console.log(req.body);
-    res.redirect('/');
-})
+// /admin/add-product => GET
+router.get('/add-product', productsController.getAddProducts);
+
+// /admin/add-product => POST
+router.post('/add-product', productsController.postAddProduct);
 
 module.exports = router;
