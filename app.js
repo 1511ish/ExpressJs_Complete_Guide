@@ -22,3 +22,10 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 app.listen(3000);
+
+
+function fun(a,b){
+    console.log(a,b);
+}
+
+fun();
